@@ -1144,6 +1144,20 @@ span, a, a:hover {
   .resume .edu .right {
     margin-left: 15px;
   }
+
+  .home .content .caption .social {
+    display: block;
+    top: 10px;
+    margin-left: 0px;
+    position: relative;
+}
+
+.home .img {
+  background: #12141C;
+  height: 50vh;
+  padding: 30px;
+}
+
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -37,10 +37,10 @@ body {
     width: 100px;
   }
 
-  .portfolio1 {
-    height: 409.6px;
-    width: 576px;
-  }
+.portfolio1 {
+    width: 75%;
+    height: auto;
+}
 
   .aligncolor {
     text-align: center;

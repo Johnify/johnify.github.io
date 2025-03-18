@@ -1,0 +1,676 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Dunsi - UX Designer Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2D3250;
+            --secondary-color: #424769;
+            --accent-color: #676F9D;
+            --light-color: #F9F7F7;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            color: var(--light-color) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .nav-link {
+            color: var(--light-color) !important;
+            margin: 0 1rem;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            color: var(--light-color);
+        }
+
+        .profile-img {
+            width: 300px;
+            height: 450px;
+            border-radius: 20%;
+            object-fit: cover;
+            border: 8px solid var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+
+        .project-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .skills-section {
+            background-color: var(--light-color);
+            padding: 5rem 0;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+
+        .progress-bar {
+            height: 10px;
+            border-radius: 5px;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .animated {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+             .contact-section {
+            background-color: #1a1f25;
+            color: #ffffff;
+            padding: 5rem 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-heading {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .contact-heading::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background-color: #3b82f6;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-input {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #374151;
+            color: #ffffff;
+            padding: 0.75rem 0;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .form-input::placeholder {
+            color: #64748b;
+        }
+
+        .message-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: #3b82f6;
+            color: #ffffff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: fit-content;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #2563eb;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .info-heading {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-text {
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #1e293b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3b82f6;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-value {
+            color: #94a3b8;
+        }
+
+        .contact-value a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-value a:hover {
+            color: #2563eb;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        .portfolio1 {
+            width: 65vw;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">JD</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start animated">
+                    <h1 class="display-4 fw-bold mb-4">Hi, I'm John Dunsi</h1>
+                    <h2 class="h3 mb-4">UX Designer & Digital Creative</h2>
+                    <p class="lead mb-4">Crafting intuitive digital experiences that delight users and drive business growth. With 3+ years of expertise in UX design, I transform complex problems into elegant solutions.</p>
+                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
+                        <a href="#portfolio" class="btn btn-light btn-lg">View My Work</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg">Let's Talk</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center animated">
+                    <img src="img/IMG_6434.JPG" alt="John Dunsi" class="profile-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section" id="skills">
+        <div class="container">
+            <h2 class="text-center mb-5">Skills & Expertise</h2>
+            <div class="row">
+                <div class="col-md-4 animated">
+                    <div class="skill-item">
+                        <i class="fas fa-pencil-ruler fa-3x mb-3 text-primary"></i>
+                        <h3>UI/UX Design</h3>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 95%"></div>
+                        </div>
+                        <p>Figma, Adobe XD, Sketch</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animated">
+                    <div class="skill-item">
+                        <i class="fas fa-code fa-3x mb-3 text-primary"></i>
+                        <h3>Prototyping</h3>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"></div>
+                        </div>
+                        <p>InVision, Principle, ProtoPie</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animated">
+                    <div class="skill-item">
+                        <i class="fas fa-users fa-3x mb-3 text-primary"></i>
+                        <h3>User Research</h3>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%"></div>
+                        </div>
+                        <p>Usability Testing, User Interviews</p>
+                    </div>
+                </div>
+                <div class="col-md-4 animated">
+                    <div class="skill-item">
+                        <i class="fas fa-code fa-3x mb-3 text-primary"></i>
+                        <h3>Wireframing</h3>
+                        <div class="progress mb-3">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"></div>
+                        </div>
+                        <p>InVision, Principle, ProtoPie</p>
+                    </div>
+                </div><div class="col-md-4 animated">
+                    <div class="skill-item">
+                        <i class="fas fa-code fa-3x mb-3 text-primary"></i>
+                        <h3>Front End Development</h3>
+                        <div class="progress mb-3">
+
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"></div>
+                        </div>
+                        <p>HTML, CSS, JavaScript</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio section with your existing projects -->
+    <section id="portfolio" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Featured Projects</h2>
+            <div class="row">
+                <!-- Your existing project cards with enhanced styling -->
+                <!-- ... -->
+                <h2>Portfolio</h2>
+                <div class="project">
+                  <img src="img/Desktop - 13.png" alt="wallet" class="portfolio1"> 
+                  <h3>Wallet App</h3>
+                  <p><strong>Description:</strong> Designed a sleek and intuitive wallet app interface, focusing on user-friendly navigation and seamless transaction management. The UI features clean, minimalist aesthetics with easy-to-access functionalities, enhancing user experience and ensuring secure, effortless financial management. Key elements include dynamic transaction views, customizable dashboards, and robust security features, providing a seamless and secure digital wallet experience.</p>
+                  <p><strong>Technologies Used:</strong> Figma, Adobe XD</p>
+                  <p><strong>Link:</strong> <a href="https://www.figma.com/design/Oipxs8lHxSUY8vgQfml3Ca/Wallet-App-Design-(Community)?node-id=102-261&t=XzKlFhpSdutQMYNV-1">Open in Figma</a></p>
+                  <p><strong>Link:</strong> <a href="https://dribbble.com/shots/21772332-Wallet-App?utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share">View Project</a></p>
+                </div>
+                <div class="project">
+                  <img src="img/Frame 1.jpg" alt="" class="portfolio1">
+                  <h3>Meditation App</h3>
+                  <p><strong>Description:</strong> Crafted a calming and user-centric meditation app interface, emphasizing ease of use and serene aesthetics. The design incorporates intuitive navigation and personalized meditation sessions, fostering a tranquil user experience. Key features include guided meditations, progress tracking, and soothing visual themes to enhance mindfulness and relaxation.</p>
+                  <p><strong>Technologies Used:</strong> Sketch, InVision</p>
+                  <p><strong>Link:</strong> <a href="
+                  <p><strong>Link:</strong> <a href="https://dribbble.com/shots/21772332-Wallet-App?utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share">View Project</a></p>
+                </div>
+                <div class="project">
+                  <img src="img/MacBook Air - 2.jpg" alt="" class="portfolio1">
+                  <h3>Bike Accessories Ordering App</h3>
+                  <p><strong>Description:</strong>Designed a sleek and functional bike accessories ordering app with a focus on seamless navigation and intuitive user experience. The interface features easy-to-browse product categories, quick order placement, and secure payment options, ensuring a hassle-free shopping experience. Key highlights include detailed product views, user reviews, and an efficient checkout process, enhancing customer satisfaction and engagement.</p>
+                  <p><strong>Technologies Used:</strong> Sketch, InVision</p>
+                  <p><strong>Link:</strong> <a href="https://www.figma.com/design/SdlIZC6LhZwhowwT6aE8VH/Online-Bike-Shopping-App-(Community)?node-id=0-1&t=VOJ73XGmy64yw05b-1">Open in Figma</a></p>
+                  <p><strong>Link:</strong> <a href="https://dribbble.com/shots/21772332-Wallet-App?utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share">View Project</a></p>
+                </div>
+                <div class="project">
+                  <img src="img/La Boutte.jpg" alt="" class="portfolio1">
+                  <h3>La Boutte Food Ordering App</h3>
+                  <p><strong>Description:</strong>Created an engaging and user-friendly food ordering app with an emphasis on seamless navigation and vibrant design. The interface offers easy access to menus, quick order customization, and real-time tracking, ensuring a delightful user experience. Key features include personalized recommendations, secure payments, and intuitive search functionality to enhance customer satisfaction.</p>
+                  <p><strong>Technologies Used:</strong> Figma, Photoshop</p>
+                  <p><strong>Link:</strong> <a href="https://www.figma.com/design/74xzrsPbgPJNAuvt8xGf2X/La-Boutte?node-id=72-428&t=Ny1Og4JiZ4JGVsaY-1">Open in Figma</a></p>
+                  <p><strong>Link:</strong> <a href="https://www.behance.net/gallery/154805543/La-Boutte-Food-Ordering-Mobile-UI-Design">View Project</a></p>
+                </div>
+                <!-- Add more projects as needed -->
+              </div>
+               <h1><b>Get Access to more of my Designs on dribbble and behance below </b></h1>
+            
+                <div class="container text-center mt-5">
+                    <h2>Follow My Work</h2>
+                    <div class="mt-4">
+                        <a href="https://www.behance.net/johnesieboma" target="_blank" class="btn btn-primary btn-lg">
+                            <i class="fab fa-behance"></i> Behance
+                        </a>
+                        <a href="https://dribbble.com/JohnWonders" target="_blank" class="btn btn-danger btn-lg">
+                            <i class="fab fa-dribbble"></i> Dribbble
+                        </a>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">What Clients Say</h2>
+            <div class="row">
+                <div class="col-md-4 animated">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-left fa-2x mb-3 text-primary"></i>
+                        <p>"John's attention to detail and user-centric approach helped us increase our app engagement by 45%."</p>
+                        <footer class="text-muted">- Sarah Johnson, Product Manager</footer>
+                    </div>
+                </div>
+                <!-- Add more testimonials -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact section with your existing form -->
+   
+    
+        
+         <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <p class="section-title">Get in touch</p>
+            <h2 class="contact-heading">Contact</h2>
+            
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-input" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-input message-input" placeholder="Message" required></textarea>
+                    </div>
+                    <button class="submit-btn">
+                        Send Message
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <polyline points="12 5 19 12 12 19"></polyline>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="contact-info">
+                    <div>
+                        <h3 class="info-heading">Connect With Me</h3>
+                        <p class="info-text">Looking to build connections and share perspectives with talented people working to create positive change.</p>
+                    </div>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-label">Name</div>
+                                <div class="contact-value">John Dunsi</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-label">Location</div>
+                                <div class="contact-value">Earth 🌍</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="contact-label">Email</div>
+                                <div class="contact-value">
+                                    <a href="mailto:johnesieboma@gmail.com">johnesieboma@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                </div>
+                <div>
+                    <div class="contact-label">Email</div>
+                    <div class="contact-value">
+                        <a href="mailto:johnesieboma@gmail.com">johnesieboma@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+        
+          <a href="https://drive.google.com/file/d/1nX4cwDsyfXb0tb7Gt9-Ts1-9WoCQBBC_/view?usp=drivesdk" class="butn butn-bg mt-30">
+            <h2 class="center"><span>Download C.V</span></h2>
+        </a>
+        
+        
+          <div class="container">
+          <h1 text-align="center;">Connect with me</h1>
+          <div class="social-icons">
+            <!-- Replace "#" with your social media profile links -->
+            <a href="https://web.facebook.com/john.esieboma.7/" class="btn btn-primary btn-lg"><i class="fab fa-facebook"></i></a>
+            <a href="https://twitter.com/DunsiJohn" class="btn btn-info btn-lg"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/johnesieboma/" class="btn btn-danger btn-lg"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/john-esieboma" class="btn btn-warning btn-lg"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/johnify/" class="btn btn-dark btn-lg"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(45, 50, 80, 0.95)';
+                navbar.style.padding = '0.5rem 0';
+            } else {
+                navbar.style.background = 'var(--primary-color)';
+                navbar.style.padding = '1rem 0';
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animated');
+        
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        animateElements.forEach(element => observer.observe(element));
+
+        // Form validation and submission
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Add your form submission logic here
+                alert('Thank you for your message! I will get back to you soon.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>

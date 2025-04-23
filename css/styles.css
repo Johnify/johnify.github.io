@@ -39,10 +39,14 @@ body {
 }
 
 .portfolio1 {
-    width: 75%;
+    width: 100%;
+    max-width: 900px;
     height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
 }
-
   .aligncolor {
     text-align: center;
   }

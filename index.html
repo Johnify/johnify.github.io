@@ -1,661 +1,696 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Dunsi - UX Designer Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #2D3250;
-            --secondary-color: #424769;
-            --accent-color: #676F9D;
-            --light-color: #F9F7F7;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            scroll-behavior: smooth;
-        }
-
-        .navbar {
-            background-color: var(--primary-color);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .navbar-brand {
-            color: var(--light-color) !important;
-            font-weight: 700;
-            font-size: 1.5rem;
-        }
-
-        .nav-link {
-            color: var(--light-color) !important;
-            margin: 0 1rem;
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--accent-color);
-            bottom: 0;
-            left: 0;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .hero-section {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            color: var(--light-color);
-        }
-
-        .profile-img {
-            width: 300px;
-            height: 450px;
-            border-radius: 20%;
-            object-fit: cover;
-            border: 8px solid var(--accent-color);
-            transition: transform 0.3s ease;
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05);
-        }
-
-        .project-card {
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-            margin-bottom: 2rem;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-
-        .skills-section {
-            background-color: var(--light-color);
-            padding: 5rem 0;
-        }
-
-        .skill-item {
-            text-align: center;
-            padding: 2rem;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .social-icons a {
-            margin: 0 10px;
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            transform: translateY(-5px);
-        }
-
-        .progress-bar {
-            height: 10px;
-            border-radius: 5px;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 1rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .animated {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
-        }
-
-        .animate-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-             .contact-section {
-            background-color: #1a1f25;
-            color: #ffffff;
-            padding: 5rem 0;
-            font-family: 'Inter', sans-serif;
-        }
-
-        .contact-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            font-size: 1rem;
-            color: #64748b;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-heading {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .contact-heading::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 60px;
-            height: 4px;
-            background-color: #3b82f6;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-        }
-
-        .contact-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
-        .form-input {
-            background-color: transparent;
-            border: none;
-            border-bottom: 1px solid #374151;
-            color: #ffffff;
-            padding: 0.75rem 0;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            border-color: #3b82f6;
-        }
-
-        .form-input::placeholder {
-            color: #64748b;
-        }
-
-        .message-input {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            background-color: #3b82f6;
-            color: #ffffff;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: fit-content;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .submit-btn:hover {
-            background-color: #2563eb;
-        }
-
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .info-heading {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .info-text {
-            color: #94a3b8;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .contact-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background-color: #1e293b;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #3b82f6;
-        }
-
-        .contact-label {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .contact-value {
-            color: #94a3b8;
-        }
-
-        .contact-value a {
-            color: #3b82f6;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-value a:hover {
-            color: #2563eb;
-        }
-
-        @media (max-width: 768px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-        }
-
-        .portfolio1 {
-    width: 80%;
-    max-width: 900px;
-    height: auto;
-    border-radius: 10px;
-    object-fit: cover;
-    margin: 0 auto;
-    display: block;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John Esieboma - UI/UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#1E1E2E',secondary:'#8892B0'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Inter', sans-serif;
 }
-    </style>
+.hero-section {
+background-image: url('https://readdy.ai/api/search-image?query=minimalist%20abstract%20design%20background%20with%20soft%20gradient%2C%20subtle%20geometric%20shapes%2C%20light%20blue%20and%20gray%20tones%2C%20clean%20modern%20aesthetic%2C%20perfect%20for%20UI%20designer%20portfolio%20hero%20section%2C%20professional%20looking%2C%20high-end%20design%2C%20subtle%20texture&width=1920&height=1080&seq=hero123&orientation=landscape');
+background-size: cover;
+background-position: center;
+}
+input:focus, textarea:focus {
+outline: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.project-card:hover .project-overlay {
+opacity: 1;
+}
+.service-card:hover {
+transform: translateY(-8px);
+}
+.testimonial-card {
+transition: opacity 0.3s ease;
+}
+</style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#">JD</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero-section" id="about">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 text-center text-lg-start animated">
-                    <h1 class="display-4 fw-bold mb-4">Hi, I'm John Dunsi</h1>
-                    <h2 class="h3 mb-4">UX Designer & Digital Creative</h2>
-                    <p class="lead mb-4">Crafting intuitive digital experiences that delight users and drive business growth. With 3+ years of expertise in UX design, I transform complex problems into elegant solutions.</p>
-                    <div class="d-flex gap-3 justify-content-center justify-content-lg-start">
-                        <a href="#portfolio" class="btn btn-light btn-lg">View My Work</a>
-                        <a href="#contact" class="btn btn-outline-light btn-lg">Let's Talk</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center animated">
-                    <img src="img/IMG_6434.JPG" alt="John Dunsi" class="profile-img">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="skills-section" id="skills">
-        <div class="container">
-            <h2 class="text-center mb-5">Skills & Expertise</h2>
-            <div class="row">
-                <div class="col-md-4 animated">
-                    <div class="skill-item">
-                        <i class="fas fa-pencil-ruler fa-3x mb-3 text-primary"></i>
-                        <h3>UI/UX Design</h3>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 95%"></div>
-                        </div>
-                        <p>Figma, Adobe XD, Sketch</p>
-                    </div>
-                </div>
-                <div class="col-md-4 animated">
-                    <div class="skill-item">
-                        <i class="fas fa-code fa-3x mb-3 text-primary"></i>
-                        <h3>Prototyping</h3>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"></div>
-                        </div>
-                        <p>InVision, Principle, ProtoPie</p>
-                    </div>
-                </div>
-                <div class="col-md-4 animated">
-                    <div class="skill-item">
-                        <i class="fas fa-users fa-3x mb-3 text-primary"></i>
-                        <h3>User Research</h3>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 85%"></div>
-                        </div>
-                        <p>Usability Testing, User Interviews</p>
-                    </div>
-                </div>
-                <div class="col-md-4 animated">
-                    <div class="skill-item">
-                        <i class="fas fa-code fa-3x mb-3 text-primary"></i>
-                        <h3>Wireframing</h3>
-                        <div class="progress mb-3">
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"></div>
-                        </div>
-                        <p>InVision, Principle, ProtoPie</p>
-                    </div>
-                </div><div class="col-md-4 animated">
-                    <div class="skill-item">
-                        <i class="fas fa-code fa-3x mb-3 text-primary"></i>
-                        <h3>Front End Development</h3>
-                        <div class="progress mb-3">
-
-                            <div class="progress-bar bg-primary" role="progressbar" style="width: 90%"></div>
-                        </div>
-                        <p>HTML, CSS, JavaScript</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Portfolio section with your existing projects -->
-    <section id="portfolio" class="py-5">
-        <div class="container">
-            <h2 class="text-center mb-5">Featured Projects</h2>
-            <div class="row">
-                <!-- Your existing project cards with enhanced styling -->
-                <!-- ... -->
-                <h2>Portfolio</h2>
-                <div class="project">
-                  <img src="img/Desktop - 13.png" alt="wallet" class="portfolio1"> 
-                  <h3>Wallet App</h3>
-                  <p><strong>Description:</strong> Designed a sleek and intuitive wallet app interface, focusing on user-friendly navigation and seamless transaction management. The UI features clean, minimalist aesthetics with easy-to-access functionalities, enhancing user experience and ensuring secure, effortless financial management. Key elements include dynamic transaction views, customizable dashboards, and robust security features, providing a seamless and secure digital wallet experience.</p>
-                  <p><strong>Technologies Used:</strong> Figma, Adobe XD</p>
-                  <p><strong>Link:</strong> <a href="https://www.figma.com/design/Oipxs8lHxSUY8vgQfml3Ca/Wallet-App-Design-(Community)?node-id=102-261&t=XzKlFhpSdutQMYNV-1">Open in Figma</a></p>
-                  <p><strong>Link:</strong> <a href="https://dribbble.com/shots/21772332-Wallet-App?utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share">View Project</a></p>
-                </div>
-                <div class="project">
-                  <img src="img/Frame 1.jpg" alt="" class="portfolio1">
-                  <h3>Meditation App</h3>
-                  <p><strong>Description:</strong> Crafted a calming and user-centric meditation app interface, emphasizing ease of use and serene aesthetics. The design incorporates intuitive navigation and personalized meditation sessions, fostering a tranquil user experience. Key features include guided meditations, progress tracking, and soothing visual themes to enhance mindfulness and relaxation.</p>
-                  <p><strong>Technologies Used:</strong> Sketch, InVision</p>
-                  <p><strong>Link:</strong> <a href="
-                  <p><strong>Link:</strong> <a href="https://dribbble.com/shots/21772332-Wallet-App?utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share">View Project</a></p>
-                </div>
-                <div class="project">
-                  <img src="img/MacBook Air - 2.jpg" alt="" class="portfolio1">
-                  <h3>Bike Accessories Ordering App</h3>
-                  <p><strong>Description:</strong>Designed a sleek and functional bike accessories ordering app with a focus on seamless navigation and intuitive user experience. The interface features easy-to-browse product categories, quick order placement, and secure payment options, ensuring a hassle-free shopping experience. Key highlights include detailed product views, user reviews, and an efficient checkout process, enhancing customer satisfaction and engagement.</p>
-                  <p><strong>Technologies Used:</strong> Sketch, InVision</p>
-                  <p><strong>Link:</strong> <a href="https://www.figma.com/design/SdlIZC6LhZwhowwT6aE8VH/Online-Bike-Shopping-App-(Community)?node-id=0-1&t=VOJ73XGmy64yw05b-1">Open in Figma</a></p>
-                  <p><strong>Link:</strong> <a href="https://dribbble.com/shots/21772332-Wallet-App?utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share&utm_source=Clipboard_Shot&utm_campaign=JohnWonders&utm_content=Wallet%20App&utm_medium=Social_Share">View Project</a></p>
-                </div>
-                <div class="project">
-                  <img src="img/La Boutte.jpg" alt="" class="portfolio1">
-                  <h3>La Boutte Food Ordering App</h3>
-                  <p><strong>Description:</strong>Created an engaging and user-friendly food ordering app with an emphasis on seamless navigation and vibrant design. The interface offers easy access to menus, quick order customization, and real-time tracking, ensuring a delightful user experience. Key features include personalized recommendations, secure payments, and intuitive search functionality to enhance customer satisfaction.</p>
-                  <p><strong>Technologies Used:</strong> Figma, Photoshop</p>
-                  <p><strong>Link:</strong> <a href="https://www.figma.com/design/74xzrsPbgPJNAuvt8xGf2X/La-Boutte?node-id=72-428&t=Ny1Og4JiZ4JGVsaY-1">Open in Figma</a></p>
-                  <p><strong>Link:</strong> <a href="https://www.behance.net/gallery/154805543/La-Boutte-Food-Ordering-Mobile-UI-Design">View Project</a></p>
-                </div>
-                <!-- Add more projects as needed -->
-              </div>
-               <h1><b>Get Access to more of my Designs on dribbble and behance below </b></h1>
-            
-                <div class="container text-center mt-5">
-                    <h2>Follow My Work</h2>
-                    <div class="mt-4">
-                        <a href="https://www.behance.net/johnesieboma" target="_blank" class="btn btn-primary btn-lg">
-                            <i class="fab fa-behance"></i> Behance
-                        </a>
-                        <a href="https://dribbble.com/JohnWonders" target="_blank" class="btn btn-danger btn-lg">
-                            <i class="fab fa-dribbble"></i> Dribbble
-                        </a>
-                    </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="text-center mb-5">What Clients Say</h2>
-            <div class="row">
-                <div class="col-md-4 animated">
-                    <div class="testimonial-card">
-                        <i class="fas fa-quote-left fa-2x mb-3 text-primary"></i>
-                        <p>"John's attention to detail and user-centric approach helped us increase our app engagement by 45%."</p>
-                        <footer class="text-muted">- Sarah Johnson, Product Manager</footer>
-                    </div>
-                </div>
-                <!-- Add more testimonials -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact section with your existing form -->
-   
-    
-        
-         <section class="contact-section" id="contact">
-        <div class="contact-container">
-            <p class="section-title">Get in touch</p>
-            <h2 class="contact-heading">Contact</h2>
-            
-            <div class="contact-grid">
-                <div class="contact-form">
-                    <h3>Send a Message</h3>
-                    <div class="form-group">
-                        <input type="text" class="form-input" placeholder="Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-input" placeholder="Email" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-input" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-input message-input" placeholder="Message" required></textarea>
-                    </div>
-                    <button class="submit-btn">
-                        Send Message
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                            <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="contact-info">
-                    <div>
-                        <h3 class="info-heading">Connect With Me</h3>
-                        <p class="info-text">Looking to build connections and share perspectives with talented people working to create positive change.</p>
-                    </div>
-                    
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="contact-label">Name</div>
-                                <div class="contact-value">John Dunsi</div>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <circle cx="12" cy="12" r="10"></circle>
-                                    <line x1="2" y1="12" x2="22" y2="12"></line>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="contact-label">Location</div>
-                                <div class="contact-value">Earth 🌍</div>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                            </div>
-                            <div>
-                                <div class="contact-label">Email</div>
-                                <div class="contact-value">
-                                    <a href="mailto:johnesieboma@gmail.com">johnesieboma@gmail.com</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-        
-          <a href="https://drive.google.com/file/d/1nX4cwDsyfXb0tb7Gt9-Ts1-9WoCQBBC_/view?usp=drivesdk" class="butn butn-bg mt-30">
-            <h2 class="center"><span>Download C.V</span></h2>
-        </a>
-        
-        
-          <div class="container">
-          <h1 text-align="center;">Connect with me</h1>
-          <div class="social-icons">
-            <!-- Replace "#" with your social media profile links -->
-            <a href="https://web.facebook.com/john.esieboma.7/" class="btn btn-primary btn-lg"><i class="fab fa-facebook"></i></a>
-            <a href="https://twitter.com/DunsiJohn" class="btn btn-info btn-lg"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com/johnesieboma/" class="btn btn-danger btn-lg"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com/in/john-esieboma" class="btn btn-warning btn-lg"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com/johnify/" class="btn btn-dark btn-lg"><i class="fab fa-github"></i></a>
-          </div>
-        </div>
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.background = 'rgba(45, 50, 80, 0.95)';
-                navbar.style.padding = '0.5rem 0';
-            } else {
-                navbar.style.background = 'var(--primary-color)';
-                navbar.style.padding = '1rem 0';
-            }
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Animation on scroll
-        const animateElements = document.querySelectorAll('.animated');
-        
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                }
-            });
-        }, observerOptions);
-
-        animateElements.forEach(element => observer.observe(element));
-
-        // Form validation and submission
-        const contactForm = document.querySelector('.contact-form form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                // Add your form submission logic here
-                alert('Thank you for your message! I will get back to you soon.');
-                this.reset();
-            });
-        }
-    </script>
+<body class="bg-white text-gray-800">
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 w-full bg-white bg-opacity-90 backdrop-blur-sm z-50 shadow-sm">
+<div class="container mx-auto px-6 py-4 flex items-center justify-between">
+<a href="#" class="text-2xl font-['Pacifico'] text-primary">John Esieboma</a>
+<div class="hidden md:flex items-center space-x-8">
+<a href="#home" class="text-gray-700 hover:text-primary transition-colors">Home</a>
+<a href="#about" class="text-gray-700 hover:text-primary transition-colors">About</a>
+<a href="#projects" class="text-gray-700 hover:text-primary transition-colors">Projects</a>
+<a href="#services" class="text-gray-700 hover:text-primary transition-colors">Services</a>
+<a href="#contact" class="text-gray-700 hover:text-primary transition-colors">Contact</a>
+<a href="#contact" class="bg-primary text-white px-5 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">Let's Talk</a>
+</div>
+<div class="md:hidden w-10 h-10 flex items-center justify-center cursor-pointer" id="mobile-menu-button">
+<i class="ri-menu-line ri-lg"></i>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="md:hidden hidden bg-white absolute w-full left-0 top-16 shadow-md" id="mobile-menu">
+<div class="container mx-auto px-6 py-3 flex flex-col space-y-4">
+<a href="#home" class="text-gray-700 py-2 hover:text-primary transition-colors">Home</a>
+<a href="#about" class="text-gray-700 py-2 hover:text-primary transition-colors">About</a>
+<a href="#projects" class="text-gray-700 py-2 hover:text-primary transition-colors">Projects</a>
+<a href="#services" class="text-gray-700 py-2 hover:text-primary transition-colors">Services</a>
+<a href="#contact" class="text-gray-700 py-2 hover:text-primary transition-colors">Contact</a>
+<a href="#contact" class="bg-primary text-white px-5 py-2 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all inline-block text-center">Let's Talk</a>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<section id="home" class="hero-section min-h-[85vh] flex items-center pt-16">
+<div class="container mx-auto px-6 w-full">
+<div class="flex flex-col md:flex-row items-center">
+<div class="md:w-1/2 mb-8 md:mb-0">
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-primary leading-tight mb-4">Designing Experiences That Matter</h1>
+<p class="text-lg md:text-xl text-gray-600 mb-6 max-w-lg">I craft intuitive digital experiences that connect users with products in meaningful ways. Let's create something amazing together.</p>
+<div class="flex flex-wrap gap-4">
+<a href="#projects" class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">View My Work</a>
+<a href="#contact" class="border border-primary text-primary px-6 py-3 !rounded-button whitespace-nowrap hover:bg-primary hover:bg-opacity-5 transition-all">Let's Connect</a>
+</div>
+</div>
+<div class="md:w-1/2 flex justify-center">
+<img src="https://readdy.ai/api/search-image?query=professional%20UI%2FUX%20designer%20workspace%20with%20minimalist%20setup%2C%20modern%20computer%2C%20tablet%20with%20design%20software%20open%2C%20clean%20desk%20with%20design%20tools%2C%20soft%20lighting%2C%20professional%20environment%2C%20high-end%20equipment%2C%20design%20mockups%20visible%20on%20screen&width=600&height=500&seq=designer123&orientation=landscape" alt="UI/UX Designer Workspace" class="w-full max-w-lg rounded-lg shadow-xl object-cover object-top">
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section id="about" class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">About Me</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Get to know the person behind the designs</p>
+</div>
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="md:w-2/5">
+<img src="https://readdy.ai/api/search-image?query=professional%20portrait%20of%20a%20male%20UI%2FUX%20designer%2C%20African%20descent%2C%20confident%20pose%2C%20professional%20attire%2C%20neutral%20background%2C%20studio%20lighting%2C%20high%20quality%20professional%20headshot%2C%20clean%20composition&width=500&height=600&seq=portrait123&orientation=portrait" alt="John Esieboma" class="w-full rounded-lg shadow-lg object-cover object-top">
+</div>
+<div class="md:w-3/5">
+<h3 class="text-2xl font-semibold text-primary mb-4">Hi, I'm John Esieboma</h3>
+<p class="text-gray-700 mb-6">I'm a UI/UX Designer with 5+ years of experience creating user-centered digital experiences. My approach combines aesthetic sensibility with a deep understanding of user behavior to craft interfaces that are both beautiful and functional.</p>
+<p class="text-gray-700 mb-6">After working with startups and established companies across fintech, healthcare, and e-commerce sectors, I've developed a versatile skill set that allows me to tackle complex design challenges with confidence and creativity.</p>
+<div class="mb-8">
+<a href="https://drive.google.com/file/d/1mZW8E5RRELmcqt6QdJXx8zJUxo258UOv/view?usp=sharing" class="inline-flex items-center bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all">
+<i class="ri-download-line mr-2"></i>
+Download CV
+</a>
+</div>
+<div class="mb-8">
+<h4 class="text-lg font-semibold text-primary mb-3">My Skills</h4>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary bg-opacity-10 text-primary px-4 py-2 rounded-full text-sm">User Research</span>
+<span class="bg-primary bg-opacity-10 text-primary px-4 py-2 rounded-full text-sm">Wireframing</span>
+<span class="bg-primary bg-opacity-10 text-primary px-4 py-2 rounded-full text-sm">Prototyping</span>
+<span class="bg-primary bg-opacity-10 text-primary px-4 py-2 rounded-full text-sm">Visual Design</span>
+<span class="bg-primary bg-opacity-10 text-primary px-4 py-2 rounded-full text-sm">Design Systems</span>
+<span class="bg-primary bg-opacity-10 text-primary px-4 py-2 rounded-full text-sm">Interaction Design</span>
+<span class="bg-primary bg-opacity-10 text-primary px-4 py-2 rounded-full text-sm">Usability Testing</span>
+<span class="bg-primary bg-opacity-10 text-primary px-4 py-2 rounded-full text-sm">Information Architecture</span>
+</div>
+</div>
+<div>
+<h4 class="text-lg font-semibold text-primary mb-3">Tools I Use</h4>
+<div class="flex flex-wrap gap-6">
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-figma-fill ri-lg"></i>
+</div>
+<span>Figma</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-adobe-fill ri-lg"></i>
+</div>
+<span>Adobe XD</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-sketch-fill ri-lg"></i>
+</div>
+<span>Sketch</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-invision-fill ri-lg"></i>
+</div>
+<span>InVision</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-photoshop-fill ri-lg"></i>
+</div>
+<span>Photoshop</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section -->
+<section id="projects" class="py-20">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">My Work</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Explore my design projects and detailed case studies</p>
+</div>
+<div class="mb-20">
+<h3 class="text-2xl font-semibold text-primary mb-8">Design Showcase</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="project-card group relative rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=modern%20mobile%20app%20interface%20design%2C%20clean%20minimal%20UI%2C%20task%20management%20app%20screens%2C%20light%20mode%20interface%2C%20professional%20UI%20design%20with%20soft%20shadows%20and%20modern%20typography&width=400&height=300&seq=showcase1&orientation=landscape" alt="Task Manager UI" class="w-full h-48 object-cover object-top">
+<div class="project-overlay absolute inset-0 bg-primary bg-opacity-90 opacity-0 transition-opacity flex flex-col justify-end p-6">
+<div class="text-white">
+<h3 class="text-lg font-semibold mb-1">Task Manager UI</h3>
+<p class="text-sm text-white text-opacity-90">Modern interface design for productivity app</p>
+</div>
+</div>
+</div>
+<div class="project-card group relative rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=dashboard%20interface%20design%2C%20analytics%20dashboard%20UI%2C%20data%20visualization%20screens%2C%20light%20theme%2C%20modern%20web%20application%20design%20with%20charts%20and%20graphs&width=400&height=300&seq=showcase2&orientation=landscape" alt="Analytics Dashboard" class="w-full h-48 object-cover object-top">
+<div class="project-overlay absolute inset-0 bg-primary bg-opacity-90 opacity-0 transition-opacity flex flex-col justify-end p-6">
+<div class="text-white">
+<h3 class="text-lg font-semibold mb-1">Analytics Dashboard</h3>
+<p class="text-sm text-white text-opacity-90">Data visualization interface</p>
+</div>
+</div>
+</div>
+<div class="project-card group relative rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=social%20media%20app%20design%2C%20modern%20social%20platform%20interface%2C%20profile%20and%20feed%20screens%2C%20light%20mode%20UI%2C%20contemporary%20mobile%20application%20design&width=400&height=300&seq=showcase3&orientation=landscape" alt="Social Platform" class="w-full h-48 object-cover object-top">
+<div class="project-overlay absolute inset-0 bg-primary bg-opacity-90 opacity-0 transition-opacity flex flex-col justify-end p-6">
+<div class="text-white">
+<h3 class="text-lg font-semibold mb-1">Social Platform</h3>
+<p class="text-sm text-white text-opacity-90">Modern social media interface</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h3 class="text-2xl font-semibold text-primary mb-8">Case Studies</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Project 1 -->
+<div class="project-card group relative rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=mobile%20banking%20app%20UI%20design%2C%20clean%20interface%2C%20financial%20dashboard%20with%20graphs%20and%20statistics%2C%20modern%20fintech%20application%20screens%2C%20professional%20UI%2FUX%20design%2C%20mobile%20app%20mockup%20on%20device%2C%20high%20quality%20render&width=600&height=450&seq=project1&orientation=landscape" alt="FinTech App Redesign" class="w-full h-80 object-cover object-top">
+<div class="project-overlay absolute inset-0 bg-primary bg-opacity-90 opacity-0 transition-opacity flex flex-col justify-end p-6">
+<div class="text-white">
+<span class="text-xs uppercase tracking-wider bg-white bg-opacity-20 px-2 py-1 rounded-full">FinTech</span>
+<h3 class="text-xl font-semibold mt-2 mb-1">FinTech App Redesign</h3>
+<p class="text-sm text-white text-opacity-90 mb-4">Redesigned a banking app to improve user engagement and simplify complex financial tasks.</p>
+<a href="#" class="inline-flex items-center text-sm font-medium hover:underline">
+View Case Study
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="project-card group relative rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=e-commerce%20website%20design%2C%20product%20page%20layout%2C%20online%20shopping%20interface%2C%20clean%20modern%20e-commerce%20UI%2C%20shopping%20cart%20and%20product%20gallery%2C%20responsive%20web%20design%2C%20professional%20UI%2FUX%20design&width=600&height=450&seq=project2&orientation=landscape" alt="E-commerce Platform" class="w-full h-80 object-cover object-top">
+<div class="project-overlay absolute inset-0 bg-primary bg-opacity-90 opacity-0 transition-opacity flex flex-col justify-end p-6">
+<div class="text-white">
+<span class="text-xs uppercase tracking-wider bg-white bg-opacity-20 px-2 py-1 rounded-full">E-commerce</span>
+<h3 class="text-xl font-semibold mt-2 mb-1">E-commerce Platform</h3>
+<p class="text-sm text-white text-opacity-90 mb-4">Designed a responsive e-commerce platform with a focus on product discovery and seamless checkout.</p>
+<a href="#" class="inline-flex items-center text-sm font-medium hover:underline">
+View Case Study
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="project-card group relative rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=healthcare%20app%20UI%20design%2C%20medical%20dashboard%2C%20patient%20monitoring%20interface%2C%20health%20tracking%20features%2C%20appointment%20scheduling%20screen%2C%20telemedicine%20interface%2C%20professional%20medical%20app%20design&width=600&height=450&seq=project3&orientation=landscape" alt="Healthcare App" class="w-full h-80 object-cover object-top">
+<div class="project-overlay absolute inset-0 bg-primary bg-opacity-90 opacity-0 transition-opacity flex flex-col justify-end p-6">
+<div class="text-white">
+<span class="text-xs uppercase tracking-wider bg-white bg-opacity-20 px-2 py-1 rounded-full">Healthcare</span>
+<h3 class="text-xl font-semibold mt-2 mb-1">Healthcare App</h3>
+<p class="text-sm text-white text-opacity-90 mb-4">Created an intuitive healthcare app for patients to manage appointments and access medical records.</p>
+<a href="#" class="inline-flex items-center text-sm font-medium hover:underline">
+View Case Study
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+<!-- Project 4 -->
+<div class="project-card group relative rounded-lg overflow-hidden shadow-lg">
+<img src="https://readdy.ai/api/search-image?query=productivity%20app%20UI%20design%2C%20task%20management%20interface%2C%20calendar%20and%20scheduling%20features%2C%20note-taking%20application%2C%20time%20tracking%20dashboard%2C%20modern%20productivity%20tool%20design%2C%20clean%20interface&width=600&height=450&seq=project4&orientation=landscape" alt="Productivity Tool" class="w-full h-80 object-cover object-top">
+<div class="project-overlay absolute inset-0 bg-primary bg-opacity-90 opacity-0 transition-opacity flex flex-col justify-end p-6">
+<div class="text-white">
+<span class="text-xs uppercase tracking-wider bg-white bg-opacity-20 px-2 py-1 rounded-full">Productivity</span>
+<h3 class="text-xl font-semibold mt-2 mb-1">Productivity Tool</h3>
+<p class="text-sm text-white text-opacity-90 mb-4">Designed a productivity suite that helps teams collaborate and manage tasks efficiently.</p>
+<a href="#" class="inline-flex items-center text-sm font-medium hover:underline">
+View Case Study
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center gap-4 mt-12">
+<a href="#" class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all inline-flex items-center">
+View All Case Studies
+<div class="w-5 h-5 flex items-center justify-center ml-2">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+<a href="#" class="border border-primary text-primary px-6 py-3 !rounded-button whitespace-nowrap hover:bg-primary hover:bg-opacity-5 transition-all inline-flex items-center">
+Browse Design Showcase
+<div class="w-5 h-5 flex items-center justify-center ml-2">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section id="services" class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">My Services</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Comprehensive design solutions to elevate your digital products</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Service 1 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mb-6">
+<i class="ri-layout-4-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-3">UI/UX Design</h3>
+<p class="text-gray-600 mb-6">Creating intuitive, visually appealing interfaces that engage users and achieve business goals through thoughtful design.</p>
+<a href="#" class="inline-flex items-center text-primary text-sm font-medium hover:underline">
+Learn More
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<!-- Service 2 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mb-6">
+<i class="ri-user-search-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-3">User Research</h3>
+<p class="text-gray-600 mb-6">Conducting comprehensive research to understand user needs, behaviors, and pain points to inform design decisions.</p>
+<a href="#" class="inline-flex items-center text-primary text-sm font-medium hover:underline">
+Learn More
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<!-- Service 3 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mb-6">
+<i class="ri-flow-chart-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-3">Prototyping</h3>
+<p class="text-gray-600 mb-6">Building interactive prototypes that simulate the user experience and allow for testing and refinement before development.</p>
+<a href="#" class="inline-flex items-center text-primary text-sm font-medium hover:underline">
+Learn More
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<!-- Service 4 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mb-6">
+<i class="ri-palette-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-3">Visual Design</h3>
+<p class="text-gray-600 mb-6">Crafting visually stunning interfaces with attention to typography, color theory, and visual hierarchy to enhance user experience.</p>
+<a href="#" class="inline-flex items-center text-primary text-sm font-medium hover:underline">
+Learn More
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<!-- Service 5 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mb-6">
+<i class="ri-code-box-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-3">Design Systems</h3>
+<p class="text-gray-600 mb-6">Developing comprehensive design systems that ensure consistency and scalability across products and platforms.</p>
+<a href="#" class="inline-flex items-center text-primary text-sm font-medium hover:underline">
+Learn More
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+<!-- Service 6 -->
+<div class="service-card bg-white p-8 rounded-lg shadow-md transition-all duration-300">
+<div class="w-16 h-16 flex items-center justify-center bg-primary bg-opacity-10 rounded-lg mb-6">
+<i class="ri-test-tube-line ri-xl text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-3">Usability Testing</h3>
+<p class="text-gray-600 mb-6">Conducting thorough usability tests to identify issues and opportunities for improvement in your digital products.</p>
+<a href="#" class="inline-flex items-center text-primary text-sm font-medium hover:underline">
+Learn More
+<div class="w-5 h-5 flex items-center justify-center ml-1">
+<i class="ri-arrow-right-line"></i>
+</div>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="py-20">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Client Testimonials</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">What people say about working with me</p>
+</div>
+<div class="relative">
+<div class="testimonial-slider flex overflow-hidden">
+<!-- Testimonial 1 -->
+<div class="testimonial-card min-w-full px-4" id="testimonial-1">
+<div class="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto">
+<div class="flex items-center mb-6">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-double-quotes-l ri-2x"></i>
+</div>
+</div>
+<p class="text-gray-700 mb-6 italic">"John completely transformed our product's user experience. His methodical approach to understanding our users' needs and translating them into intuitive designs has significantly improved our conversion rates and user satisfaction scores."</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20female%20executive%2C%20business%20attire%2C%20neutral%20background%2C%20confident%20expression%2C%20corporate%20portrait%2C%20high%20quality%20professional%20photo&width=100&height=100&seq=testimonial1&orientation=squarish" alt="Sarah Johnson" class="w-12 h-12 rounded-full object-cover object-top mr-4">
+<div>
+<h4 class="font-semibold text-primary">Sarah Johnson</h4>
+<p class="text-gray-600 text-sm">Product Manager, FinTech Solutions</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="testimonial-card min-w-full px-4 hidden" id="testimonial-2">
+<div class="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto">
+<div class="flex items-center mb-6">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-double-quotes-l ri-2x"></i>
+</div>
+</div>
+<p class="text-gray-700 mb-6 italic">"Working with John was a game-changer for our startup. He not only delivered exceptional designs but also educated our team on design principles that we continue to apply. His work on our healthcare app has received praise from both users and investors."</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20male%20CEO%2C%20business%20casual%20attire%2C%20neutral%20background%2C%20friendly%20confident%20expression%2C%20corporate%20portrait%2C%20high%20quality%20professional%20photo&width=100&height=100&seq=testimonial2&orientation=squarish" alt="Michael Chen" class="w-12 h-12 rounded-full object-cover object-top mr-4">
+<div>
+<h4 class="font-semibold text-primary">Michael Chen</h4>
+<p class="text-gray-600 text-sm">CEO, HealthConnect</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="testimonial-card min-w-full px-4 hidden" id="testimonial-3">
+<div class="bg-white p-8 rounded-lg shadow-md max-w-3xl mx-auto">
+<div class="flex items-center mb-6">
+<div class="w-10 h-10 flex items-center justify-center text-primary">
+<i class="ri-double-quotes-l ri-2x"></i>
+</div>
+</div>
+<p class="text-gray-700 mb-6 italic">"John's redesign of our e-commerce platform resulted in a 40% increase in user engagement and a 25% reduction in cart abandonment. His ability to balance aesthetics with functionality is truly impressive. I highly recommend his services."</p>
+<div class="flex items-center">
+<img src="https://readdy.ai/api/search-image?query=professional%20headshot%20of%20a%20female%20marketing%20director%2C%20business%20professional%20attire%2C%20neutral%20background%2C%20warm%20smile%2C%20corporate%20portrait%2C%20high%20quality%20professional%20photo&width=100&height=100&seq=testimonial3&orientation=squarish" alt="Rebecca Torres" class="w-12 h-12 rounded-full object-cover object-top mr-4">
+<div>
+<h4 class="font-semibold text-primary">Rebecca Torres</h4>
+<p class="text-gray-600 text-sm">Marketing Director, ShopEase</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Testimonial Navigation -->
+<div class="flex justify-center mt-8">
+<button class="w-3 h-3 rounded-full bg-primary mx-1 testimonial-dot active" data-index="1"></button>
+<button class="w-3 h-3 rounded-full bg-gray-300 mx-1 testimonial-dot" data-index="2"></button>
+<button class="w-3 h-3 rounded-full bg-gray-300 mx-1 testimonial-dot" data-index="3"></button>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Let's Work Together</h2>
+<p class="text-gray-600 max-w-2xl mx-auto">Have a project in mind? Get in touch and let's create something amazing</p>
+</div>
+<div class="flex flex-col md:flex-row gap-12">
+<div class="md:w-1/2">
+<form id="contact-form" class="space-y-6" action="send_email.php" method="POST">
+<div>
+<label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+<input type="text" id="name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Your name">
+</div>
+<div>
+<label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+<input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Your email">
+</div>
+<div>
+<label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+<input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary" placeholder="What's this about?">
+</div>
+<div>
+<label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+<textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded focus:border-primary focus:ring-1 focus:ring-primary resize-none" placeholder="Tell me about your project..."></textarea>
+</div>
+<button type="submit" class="bg-primary text-white px-6 py-3 !rounded-button whitespace-nowrap hover:bg-opacity-90 transition-all w-full">Send Message</button>
+</form>
+</div>
+<div class="md:w-1/2">
+<div class="bg-white p-8 rounded-lg shadow-md h-full">
+<h3 class="text-xl font-semibold text-primary mb-6">Contact Information</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium text-gray-800">Email</h4>
+<a href="mailto:john@esieboma.design" class="text-primary hover:underline">johnesieboma@gmail.com</a>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4">
+<i class="ri-phone-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium text-gray-800">Phone</h4>
+<a href="tel:+1234567890" class="text-primary hover:underline">08081780524</a>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full mr-4">
+<i class="ri-map-pin-line text-primary"></i>
+</div>
+<div>
+<h4 class="font-medium text-gray-800">Location</h4>
+<p class="text-gray-600">Lagos, Nigeria</p>
+</div>
+</div>
+<div class="pt-6">
+<h4 class="font-medium text-gray-800 mb-4">Connect with me</h4>
+<div class="flex space-x-4">
+<a href="https://www.linkedin.com/in/john-esieboma" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-linkedin-fill"></i>
+</a>
+<a href="https://www.dribbble.com/JohnWonders" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-dribbble-fill"></i>
+</a>
+<a href="https://www.behance.net/johnesieboma" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-behance-fill"></i>
+</a>
+<a href="https://www.instagram.com/iohnesieboma" class="w-10 h-10 flex items-center justify-center bg-primary bg-opacity-10 rounded-full hover:bg-primary hover:text-white transition-colors">
+<i class="ri-instagram-fill"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-primary text-white py-12">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div>
+<a href="#" class="text-2xl font-['Pacifico'] text-white">John Esieboma</a>
+<p class="mt-2 text-white text-opacity-80">UI/UX Designer crafting exceptional digital experiences</p>
+</div>
+</div>
+<hr class="border-white border-opacity-20 my-8">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<p class="text-white text-opacity-80 text-sm">&copy; 2025 John Esieboma. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Back to Top Button -->
+<button id="back-to-top" class="fixed bottom-8 right-8 bg-primary text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 invisible transition-all duration-300">
+<i class="ri-arrow-up-line ri-lg"></i>
+</button>
+<!-- Mobile Menu Script -->
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenuButton.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+if (mobileMenu.classList.contains('hidden')) {
+mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+} else {
+mobileMenuButton.innerHTML = '<i class="ri-close-line ri-lg"></i>';
+}
+});
+// Close mobile menu when clicking on a link
+const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+mobileMenuLinks.forEach(link => {
+link.addEventListener('click', function() {
+mobileMenu.classList.add('hidden');
+mobileMenuButton.innerHTML = '<i class="ri-menu-line ri-lg"></i>';
+});
+});
+});
+</script>
+<!-- Testimonial Slider Script -->
+<script id="testimonial-slider-script">
+document.addEventListener('DOMContentLoaded', function() {
+const dots = document.querySelectorAll('.testimonial-dot');
+const testimonials = document.querySelectorAll('.testimonial-card');
+let currentIndex = 1;
+let interval;
+function showTestimonial(index) {
+testimonials.forEach(testimonial => {
+testimonial.classList.add('hidden');
+});
+dots.forEach(dot => {
+dot.classList.remove('bg-primary');
+dot.classList.add('bg-gray-300');
+});
+document.getElementById(`testimonial-${index}`).classList.remove('hidden');
+dots[index - 1].classList.remove('bg-gray-300');
+dots[index - 1].classList.add('bg-primary');
+currentIndex = index;
+}
+function nextTestimonial() {
+let nextIndex = currentIndex + 1;
+if (nextIndex > testimonials.length) {
+nextIndex = 1;
+}
+showTestimonial(nextIndex);
+}
+// Initialize slider
+dots.forEach(dot => {
+dot.addEventListener('click', function() {
+const index = parseInt(this.getAttribute('data-index'));
+showTestimonial(index);
+clearInterval(interval);
+startAutoSlide();
+});
+});
+function startAutoSlide() {
+interval = setInterval(nextTestimonial, 5000);
+}
+// Start auto-sliding
+startAutoSlide();
+});
+</script>
+<!-- Contact Form Script -->
+<script id="contact-form-script">
+document.addEventListener('DOMContentLoaded', function() {
+const contactForm = document.getElementById('contact-form');
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+// Get form values
+const name = document.getElementById('name').value;
+const email = document.getElementById('email').value;
+const subject = document.getElementById('subject').value;
+const message = document.getElementById('message').value;
+// Basic validation
+if (!name || !email || !message) {
+alert('Please fill in all required fields.');
+return;
+}
+// Email validation
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+if (!emailRegex.test(email)) {
+alert('Please enter a valid email address.');
+return;
+}
+// Here you would typically send the form data to a server
+// For demonstration, we'll just show a success message
+alert('Thank you for your message! I will get back to you soon.');
+contactForm.reset();
+});
+});
+</script>
+<!-- Back to Top Button Script -->
+<script id="back-to-top-script">
+document.addEventListener('DOMContentLoaded', function() {
+const backToTopButton = document.getElementById('back-to-top');
+window.addEventListener('scroll', function() {
+if (window.pageYOffset > 300) {
+backToTopButton.classList.remove('opacity-0', 'invisible');
+backToTopButton.classList.add('opacity-100', 'visible');
+} else {
+backToTopButton.classList.remove('opacity-100', 'visible');
+backToTopButton.classList.add('opacity-0', 'invisible');
+}
+});
+backToTopButton.addEventListener('click', function() {
+window.scrollTo({
+top: 0,
+behavior: 'smooth'
+});
+});
+});
+</script>
+<!-- Smooth Scroll Script -->
+<script id="smooth-scroll-script">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop - 80, // Adjust for fixed header
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
 </body>
 </html>

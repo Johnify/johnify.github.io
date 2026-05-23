@@ -17,7 +17,7 @@ function sendMail(){
     <title>Simple video example</title>
   </head>
   <body>
-    <h1>Below is a simple video example</h1>
+    <h1>Smart Home Automation App </h1>
 
     <video src="rabbit320.webm" controls>
       <p>Your browser doesn't support HTML5 video. Here is a <a href="rabbit320.webm">link to the video</a> instead.</p> 
